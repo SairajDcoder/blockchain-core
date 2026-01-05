@@ -14,7 +14,7 @@ async function main() {
     console.log("Current message:", currentMessage);
 
     // 5. WRITE to blockchain (transaction)
-    const tx = await contract.setMessage("Hello from Day 2 🚀");
+    const tx = await contract.setMessage("Hello from Day 2 (new)🚀");
     await tx.wait();
 
     console.log("Message updated!");
