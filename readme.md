@@ -14,6 +14,6 @@
 `📅 2026-01-03`
 
 - **Learned:** Reading vs Writing Blockchain State (Call vs Transaction), Gas Concept, Transaction Lifecycle, Role of Signer in State-Changing Operations
-- **Location:** `blockchain-day2/contracts/HelloWorld.sol && blockchain-day2/scripts/interact.js`
+- **Location:** `blockchain-day1/contracts/HelloWorld.sol && blockchain-day1/scripts/interact.js`
 
 ---
