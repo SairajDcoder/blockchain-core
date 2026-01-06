@@ -1,32 +1,35 @@
+const { ethers } = require("ethers");
+const abi = require("../artifacts/contracts/OracleDemo.sol/OracleDemo.json").abi;
+
+// 🔁 Replace with your deployed contract address
+const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+
 async function main() {
-    // 1. Get contract address (from deploy output)
-    const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+    // connect to local hardhat node
+    const provider = new ethers.providers.JsonRpcProvider(
+        "http://127.0.0.1:8545"
+    );
 
-    // 2. Get signer (account)
-    const [signer] = await ethers.getSigners();
+    // use first hardhat account
+    const signer = provider.getSigner(0);
 
-    // 3. Get contract instance
-    const HelloWorld = await ethers.getContractFactory("HelloWorld");
-    const contract = HelloWorld.attach(contractAddress);
+    // contract instance
+    const contract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        abi,
+        signer
+    );
 
-    // 4. READ from blockchain (call)
-    const currentMessage = await contract.message();
-    console.log("Current message:", currentMessage);
+    console.log("📤 Requesting data from oracle...");
 
-    // 5. WRITE to blockchain (transaction)
-    const tx = await contract.setMessage("Hello from Day 2 (new)🚀");
+    // this emits the DataRequested event
+    const tx = await contract.requestData();
     await tx.wait();
 
-    console.log("Message updated!");
-
-    // 6. READ again
-    const newMessage = await contract.message();
-    console.log("New message:", newMessage);
+    console.log("✅ Data request transaction confirmed");
 }
 
-main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+});
