@@ -24,3 +24,10 @@
 - **Location:** `blockchain-day1/contracts/HelloWorld.sol`
 
 ---
+
+`📅 2026-01-05`
+
+- **Learned:** Practical Oracle Implementation, Event Emission & Listening, Off-chain Listener using Node.js, Sending External Data Back to Blockchain via Transactions, End-to-End Oracle Workflow
+- **Location:** `blockchain-day1/contracts/OracleDemo.sol && blockchain-day1/scripts/oracleListener.js && blockchain-day1/scripts/interact.js`
+
+---
